@@ -1,6 +1,6 @@
 package com.tweteroo.api.models;
 
-import com.tweteroo.api.dtos.TwitterDTO;
+import com.tweteroo.api.dtos.TweetDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-public class Twitter {
+public class Tweet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Twitter(TwitterDTO data) {
+    public Tweet(TweetDTO data) {
         this.username = data.username();
         this.avatar = data.avatar();
         this.text = data.text();
