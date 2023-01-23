@@ -18,9 +18,9 @@ public class Tweet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Tweet(TweetDTO data) {
+    public Tweet(TweetDTO data, Users user) {
         this.username = data.username();
-        this.avatar = data.avatar();
+        this.avatar = user.getAvatar();
         this.text = data.text();
     }
 
