@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tweteroo.api.dtos.UsersDTO;
-import com.tweteroo.api.models.Users;
-import com.tweteroo.api.service.UsersService;
+import com.tweteroo.api.dtos.AccountDTO;
+import com.tweteroo.api.models.Account;
+import com.tweteroo.api.service.AccountService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/auth/sign-up")
-public class UsersController {
+public class AccountController {
 
     @Autowired
-    private UsersService service;
+    private AccountService service;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public void create(@RequestBody @Valid UsersDTO req) {
-        service.create(new Users(req));
+    public void create(@RequestBody @Valid AccountDTO req) {
+        service.create(new Account(req));
     }
 }

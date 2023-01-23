@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dtos.TweetDTO;
 import com.tweteroo.api.models.Tweet;
-import com.tweteroo.api.models.Users;
+import com.tweteroo.api.models.Account;
+import com.tweteroo.api.service.AccountService;
 import com.tweteroo.api.service.TweetService;
-import com.tweteroo.api.service.UsersService;
 
 import jakarta.validation.Valid;
 
@@ -34,7 +34,7 @@ public class TweetController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public void create(@RequestBody @Valid TweetDTO req) {
-        Users user = UsersService.findByUsername(req.username()).get(0);
+        Account user = AccountService.findByUsername(req.username());
         service.create(new Tweet(req, user));
     }
 
