@@ -29,24 +29,27 @@ import jakarta.validation.Valid;
 public class TweetController {
 
     @Autowired
-    private TweetService service;
+    private TweetService TweetService;
+
+    @Autowired
+    private AccountService AccountService;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
     public void create(@RequestBody @Valid TweetDTO req) {
         Account user = AccountService.findByUsername(req.username());
-        service.create(new Tweet(req, user));
+        TweetService.create(new Tweet(req, user));
     }
 
     @GetMapping
     public List<Tweet> listAll(@PageableDefault(page = 0) Pageable page) {
-        return service.findAll(page.getPageNumber());
+        return TweetService.findAll(page.getPageNumber());
 
     }
 
     @GetMapping("/{username}")
     public List<Tweet> listUserTweets(@PageableDefault(page = 0) Pageable page, @PathVariable String username) {
-        return service.findUserTweets(username, page.getPageNumber());
+        return TweetService.findUserTweets(username, page.getPageNumber());
     }
 
 }

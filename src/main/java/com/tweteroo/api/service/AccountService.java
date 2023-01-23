@@ -10,13 +10,14 @@ import com.tweteroo.api.repositories.AccountRepository;
 public class AccountService {
 
     @Autowired
-    private static AccountRepository repository;
+    private AccountRepository repository;
 
     public void create(Account req) {
         repository.save(req);
     }
 
-    public static Account findByUsername(String username) {
+    public Account findByUsername(String username) {
         return repository.findByUsername(username).get(0);
+
     }
 }
